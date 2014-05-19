@@ -10,6 +10,13 @@ public class StartScreen implements ActionListener{
 	public StartScreen(){
 
 	}
+	
+	/**
+	 * Draw the screen
+	 */
+	public void drawGUI(){
+		
+	}
 
 	/**
 	 * get the chosen difficulty setting
@@ -19,9 +26,13 @@ public class StartScreen implements ActionListener{
 
 		return null;	
 	}
+	
+	public void actionListiner(ActionEvent e){
+		
+	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent e) {
 
 	}
 }
