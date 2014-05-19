@@ -10,19 +10,19 @@ public class Hard implements Difficulty{
 	 * Easy constructor
 	*/
 	public Hard(){
-		size = 0;
+		size = 15;
 		extraPaths = 0;
 	}
 
 	@Override
 	public int getSize() {
-
+		int size = this.size;
 		return size;
 	}
 
 	@Override
 	public int getExtraPaths() {
-
+		int extraPaths = this.extraPaths;
 		return extraPaths;
 	}
 }

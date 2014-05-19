@@ -10,19 +10,19 @@ public class Easy implements Difficulty{
 	 * Easy constructor
 	*/
 	public Easy(){
-		size = 0;
-		extraPaths = 0;
+		size = 10;
+		extraPaths = 2;
 	}
 
 	@Override
 	public int getSize() {
-
+		int size = this.size;
 		return size;
 	}
 
 	@Override
 	public int getExtraPaths() {
-
+		int extraPaths = this.extraPaths;
 		return extraPaths;
 	}
 }
