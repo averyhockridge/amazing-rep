@@ -6,13 +6,15 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 
 
 /**
 * @author Stuart Aitken
 */
 public class StartPanel implements ActionListener{
+	private Difficulty difficulty;
+	JButton easyButton;
+	JButton hardButton;
 	
 	public StartPanel(){
 		
@@ -26,8 +28,12 @@ public class StartPanel implements ActionListener{
 		messagePanel.add(new JLabel("Choose your difficulty to start the game"));
 		
 		JPanel buttonPanel = new JPanel();
-		JButton easyButton = new JButton("Easy");
-		JButton hardButton = new JButton("Hard");
+		easyButton = new JButton("Easy");
+		easyButton.addActionListener(this);
+		
+		hardButton = new JButton("Hard");
+		hardButton.addActionListener(this);
+		
 	    buttonPanel.add(easyButton);
 	    buttonPanel.add(hardButton);
 		
@@ -36,7 +42,7 @@ public class StartPanel implements ActionListener{
 		frame.add(messagePanel, BorderLayout.NORTH);
 		frame.add(buttonPanel, BorderLayout.CENTER);
 		
-		frame.setSize(500, 500);
+		frame.setSize(750, 500);
 	    frame.setVisible(true);
 		
 	}
@@ -45,24 +51,17 @@ public class StartPanel implements ActionListener{
 	 * get the chosen difficulty setting
 	 * @return difficulty 
 	 */
-	public Difficulty getDifficulty(String difficulty){
-		Difficulty ret = null;
-		
-		if(difficulty.equals("easy")){
-			ret = new Easy();
-		}else{
-			ret = new Hard();
-		}
-
+	public Difficulty getDifficulty(){
+		Difficulty ret = difficulty;
 		return ret;	
-	}
-	
-	public void actionListiner(ActionEvent e){
-		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
+		if(e.getSource() == easyButton){
+			difficulty = new Easy();
+		}else if (e.getSource() == hardButton){
+			difficulty = new Hard();
+		}
 	}
 }
