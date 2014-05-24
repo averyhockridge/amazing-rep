@@ -1,76 +1,57 @@
-import java.awt.BorderLayout;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+
 /**
- * 
- * @author Stuart Aitken, Leah Williams, Brandon Sandoval
- *
- */
-public class PlayPanel extends JPanel{
-	int endState;
-	int location;
-	Player player;
-	int difficulty;
-	/**
-	 * 
-	 */
-	public PlayPanel(int difficulty){
-		JPanel mazePanel = new JPanel();
-		JPanel buttonPanel = new JPanel();
-		JButton winButton= new JButton("Simulate Win");
-		JButton lossButton = new JButton("Simulate Loss");
+* @author Stuart Aitken
+*/
+public class StartPanel extends JPanel{
+
+	private int difficulty = 0;
+	
+	public StartPanel(){
+		JPanel messagePanel = new JPanel();
+		this.add(new JLabel("Choose your difficulty to start the game"));
 		
-		winButton.addActionListener(new
+		JPanel buttonPanel = new JPanel();
+		JButton easyButton= new JButton("Easy");
+		JButton hardButton = new JButton("Hard");
+		
+		easyButton.addActionListener(new
 	            ActionListener()
 	            {
 	               public void actionPerformed(ActionEvent event)
 	               {
-	            	   endState = 1;
+	            	   difficulty = 10;
 	               }
 	            });		
 		
-		lossButton.addActionListener(new
+		hardButton.addActionListener(new
 	            ActionListener()
 	            {
 	               public void actionPerformed(ActionEvent event)
 	               {
-	            	   endState = 2;
+	            	   difficulty = 20;
 	               }
 	            });
 		
-	    buttonPanel.add(winButton);
-	    buttonPanel.add(lossButton);
-		buttonPanel.setVisible(true);	
+	    buttonPanel.add(easyButton);
+	    buttonPanel.add(hardButton);	
 	    
-		mazePanel.add(new MazeGenerator(difficulty, 200, 200));
-		mazePanel.setVisible(true);
-		
-		this.difficulty = difficulty;
-		endState = 0;
-		location = 0;
-		player = new Player(location, difficulty);
-		
-		this.add(mazePanel);
-		this.add(buttonPanel);
-		
+	    this.add(messagePanel);
+	    this.add(buttonPanel);
 	}
-	
-	public int getEndState(){
-		return endState;
-	}
-	
-	public void paint(Graphics g) {
-		location = player.getLocation();
-		if(difficulty == 10) {
-			g.drawOval((location%difficulty)*50, (location/difficulty)*50, 50, 50);
-		}
-		else if(difficulty == 20) {
-			g.drawOval((location%difficulty)*25, (location/difficulty)*25, 25, 25);	
-		}
+
+	/**
+	 * get the chosen difficulty setting
+	 * @return difficulty 
+	 */
+	public int getDifficulty(){
+		int ret = difficulty;
+		return ret;	
 	}
 }
