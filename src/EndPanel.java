@@ -33,7 +33,7 @@ import javax.swing.JPanel;
    			else {
    				messagePanel.add(new JLabel("Sorry you lost! - Would you like to try again?"));	
    			}
-		      
+		    messagePanel.setVisible(true);
    			JPanel buttonPanel = new JPanel();
    			//JButton replayButton = new JButton("Go Again");
    			replayButton.addActionListener(this);
@@ -41,6 +41,7 @@ import javax.swing.JPanel;
    			quitButton.addActionListener(this);
    			buttonPanel.add(replayButton);
    			buttonPanel.add(quitButton);
+   			buttonPanel.setVisible(true);
    			this.add(messagePanel);
    			this.add(buttonPanel);
    		}  
