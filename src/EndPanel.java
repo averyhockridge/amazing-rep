@@ -1,43 +1,54 @@
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
+
 
 
 	/**
 	* @author Leah Williams
 	*/
-	public class EndPanel implements ActionListener{
+	public class EndPanel extends JPanel implements ActionListener {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+	    private JButton replayButton = new JButton("Go Again");
+        private JButton quitButton = new JButton("Quit");
+		private int end = 0;
+		private int continueState = 0;
+		//private JFrame frame;
 		
-		public EndPanel(){
-			
-		}
-		
+		public EndPanel(int end){
+	        this.end = end;
 		/**
 		 * Draw the screen
 		 */
-		public void drawGUI(){
-			JPanel messagePanel = new JPanel();
-			messagePanel.add(new JLabel("You won! Congrats - Play again?"));
-			
+		 JPanel messagePanel = new JPanel();
+	           
+	      if (end == 1){	
+		      messagePanel.add(new JLabel("Congratulations You Won! - Would you like to play again?"));
+	      }
+	      else {
+	         messagePanel.add(new JLabel("Sorry you lost! - Would you like to try again?"));	
+	      }
+	       
+	     
+	      
 			JPanel buttonPanel = new JPanel();
-			JButton easyButton = new JButton("Go again");
-			JButton hardButton = new JButton("Quit");
-		    buttonPanel.add(goAgainButton);
+		//	JButton replayButton = new JButton("Go Again");
+			replayButton.addActionListener(this);
+		 //JButton quitButton = new JButton("Quit");
+			quitButton.addActionListener(this);
+		    buttonPanel.add(replayButton);
 		    buttonPanel.add(quitButton);
 			
-			JFrame frame = new JFrame();
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			frame.add(messagePanel, BorderLayout.NORTH);
-			frame.add(buttonPanel, BorderLayout.CENTER);
-			
-			frame.setSize(500, 500);
-		    frame.setVisible(true);
-			
+		    
+		    this.add(messagePanel);
+		    this.add(buttonPanel);
+		 			
 		}
 
 		/**
@@ -46,18 +57,24 @@ import javax.swing.JTextArea;
 		 */
 		
 			
-				
 		
-		
-		public void actionListiner(ActionEvent e){
-			
-		}
-
 		@Override
 		public void actionPerformed(ActionEvent e) {
-
+			 //   System.out.println("go again"); 
+          	if(e.getSource() == replayButton){
+          		continueState = 1;
+		} else if (e.getSource() == quitButton) {	
+			 //   System.out.println("quitting"); 
+			    continueState = 2;
 		}
-	
 	}
-	
-
+		
+          	/**
+        	 * 
+        	 * @return the state of the game
+        	 */
+        	public int getContinueState(){
+        		return continueState;
+        	}
+}	
+		
