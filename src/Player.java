@@ -1,18 +1,28 @@
-import java.awt.Point;
+import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
+
+import javax.swing.ImageIcon;
 
 /**
  * 
- * @author Avery Hockridge (ajho661)
+ * @author Stuart Aitken, Leah Williamson, Brandon Sandoval Avery Hockridge
  *
  */
-public class Player implements KeyListener{
+public class Player extends MazeCommon implements KeyListener{
 	
-	private Point location;
+	private int location;
+	private Image player;
+	private int size;
 	
-	public Player(Point startLocation){
-		location = new Point(startLocation.x, startLocation.y);
+	public Player(int startLocation, int size){
+		
+		location = startLocation;
+		ImageIcon img = new ImageIcon("/src/alan.gif");
+		player = img.getImage();
+		this.size = size;
+		
 	}
 	
 	/**
@@ -21,19 +31,62 @@ public class Player implements KeyListener{
 	 */
 	public void movePlayer(String direction){
 		if (direction.equals("up")){
-			location.y = location.y + 1;
+			if (canMove(direction)){
+				location = location - size;
+			}			
 		} else if (direction.equals("down")){
-			location.y = location.y - 1;
-		} else if (direction.equals("left")){
-			location.x = location.x - 1;
-		} else {
-			location.x = location.x + 1;
+			if (canMove(direction)){
+				location = location + size;
+			}			
+		}else if (direction.equals("left")){
+			if (canMove(direction)){
+				location = location - 1;
+			}			
+		}else if (direction.equals("right")){
+			if (canMove(direction)){
+				location = location + 1;
+			}			
 		}
+	}
+
+	private boolean canMove(String direction) {
+		ArrayList<Integer> neighbours = new ArrayList<Integer>(getNeighbours(location, size));
+		int check = 0;
+		boolean ret = false;
+		
+		if(direction.equals("up")){
+			check = location - size;
+			if(neighbours.contains(check)){
+				ret = true;
+			}
+		}
+		
+		if(direction.equals("down")){
+			check = location + size;
+			if(neighbours.contains(check)){
+				ret = true;
+			}
+		}
+		
+		if(direction.equals("left")){
+			check = location - 1;
+			if(neighbours.contains(check)){
+				ret = true;
+			}
+		}
+		
+		if(direction.equals("right")){
+			check = location + 1;
+			if(neighbours.contains(check)){
+				ret = true;
+			}
+		}
+		return ret;
 	}
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
@@ -55,7 +108,6 @@ public class Player implements KeyListener{
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 	
@@ -63,9 +115,11 @@ public class Player implements KeyListener{
 	 * 
 	 * @return the location of the player
 	 */
-	public Point getLocation(){
+	public int getLocation(){
 		return location;
 	}
 	
-
+	public Image getPlayer(){
+		return player;
+	}
 }
