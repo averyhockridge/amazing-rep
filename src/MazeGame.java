@@ -1,4 +1,6 @@
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -15,7 +17,8 @@ public class MazeGame implements ActionListener {
 	private final static int END = 2;
 	private final static int QUIT = 3;
 	private static int state;
-	private int difficulty = 0;
+	private static int difficulty = 0;
+	private int endState = 0;
 	static MazeGame maze = new MazeGame(START);
 	
 	public static void main(String[] args) {
@@ -34,12 +37,18 @@ public class MazeGame implements ActionListener {
 		HelpPanel help = null;
 
 		boolean ret;
-		int endState = 0;
 		int continueGame = 0;
 		
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		//Centre window in middle of screen
+		Toolkit t = Toolkit.getDefaultToolkit();
+        Dimension d = t.getScreenSize();
 		frame.setSize(750, 500);
+        int h = (d.height - frame.getHeight()) /2;
+        int w = (d.width - frame.getWidth()) /2;
+		frame.setLocation(w, h);
 	    frame.setVisible(true);
 
 		if(state == START) {
@@ -73,7 +82,7 @@ public class MazeGame implements ActionListener {
 			state = END;
 		}
 		else if(state == END) {
-			end = new EndPanel(1);
+			end = new EndPanel(endState);
 		    frame.add(end, BorderLayout.CENTER);
 			end.setVisible(true);
 			while(continueGame == 0) {
@@ -85,6 +94,7 @@ public class MazeGame implements ActionListener {
 			}
 			else{
 				state = START;
+				endState = 0;
 			}
 		}
 		
