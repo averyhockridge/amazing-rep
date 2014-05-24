@@ -1,0 +1,64 @@
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+
+/**
+ * @author Stuart Aitken, Brandon Sandoval, Leah Williams
+ *
+ */
+public class MazeGame implements ActionListener {
+
+	public static void main(String[] args) {
+		MazeGame main = new MazeGame();
+		main.run();
+	}
+	
+	public void run() {
+		StartPanel start = new StartPanel();;
+		PlayPanel play = new PlayPanel();
+		EndPanel end = new EndPanel();
+		HelpPanel help = new HelpPanel();
+
+		int difficulty = 0;
+		int endState;
+		boolean continueGame;
+		
+		JFrame frame = new JFrame();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(750, 500);
+	    frame.setVisible(true);
+	    frame.add(start, BorderLayout.CENTER);
+
+		do{
+			start.setVisible(true);
+			while(difficulty == 0) {
+				difficulty = start.getDifficulty();		
+			}
+			System.out.println(difficulty);
+			start.setVisible(false);
+
+			//frame.add(play, BorderLayout.CENTER);
+			//play.play(difficulty);
+			//endState = play.getEndState();
+
+			//end = new EndPanel();
+			//frame.add(end, BorderLayout.CENTER);
+			//end(endState);
+			//continueGame = end.continueGame();
+			continueGame = true;
+			
+		}
+		while(continueGame == true);
+	}
+
+	public void actionListener(ActionEvent e) {
+		
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		
+	}
+}
