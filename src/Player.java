@@ -19,7 +19,7 @@ public class Player extends MazeCommon implements KeyListener{
 	public Player(int startLocation, int size){
 		
 		location = startLocation;
-		ImageIcon img = new ImageIcon("/src/alan.gif");
+		ImageIcon img = new ImageIcon("/src/alian.gif");
 		player = img.getImage();
 		this.size = size;
 		
