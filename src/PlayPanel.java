@@ -1,4 +1,4 @@
-import java.awt.BorderLayout;
+
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,7 +11,11 @@ import javax.swing.JPanel;
  * @author Stuart Aitken, Leah Williams, Brandon Sandoval
  *
  */
+@SuppressWarnings("serial")
 public class PlayPanel extends JPanel{
+	/**
+	 * 
+	 */
 	int endState;
 	int location;
 	Player player;
