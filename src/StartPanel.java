@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 /**
 * @author Stuart Aitken
 */
+@SuppressWarnings("serial")
 public class StartPanel extends JPanel{
 
 	private int difficulty = 0;
