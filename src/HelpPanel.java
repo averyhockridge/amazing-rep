@@ -12,10 +12,7 @@ import javax.swing.JPanel;
 	*/
 	public class HelpPanel implements ActionListener{
 		
-	/*	public HelpPanel(){
-			
-		}*/
-		
+	/*public HelpPanel(){
 		/**
 		 * Draw the screen
 		 */
@@ -31,14 +28,10 @@ import javax.swing.JPanel;
 			frame.add(buttonPanel, BorderLayout.CENTER);
 			
 			frame.setSize(500, 500);
-		    frame.setVisible(true);
+			frame.setVisible(true);
 			
 		}
 
-			
-				
-		
-		
 		public void actionListiner(ActionEvent e){
 			
 		}
