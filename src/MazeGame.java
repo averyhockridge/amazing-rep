@@ -4,7 +4,6 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 /**
  * @author Stuart Aitken, Brandon Sandoval, Leah Williams
@@ -13,16 +12,16 @@ import javax.swing.JPanel;
 public class MazeGame implements ActionListener {
 
 	private final static int START = 0;
-	private final static int PLAY = 1;
-	private final static int END = 2;
-	private final static int QUIT = 3;
-	private static int state;
-	private static int difficulty = 0;
+	private final int PLAY = 1;
+	private final int END = 2;
+	private final int QUIT = 3;
+	private int state;
+	private int difficulty = 0;
 	private int endState = 0;
-	static MazeGame maze = new MazeGame(START);
 	
 	public static void main(String[] args) {
-		while(maze.run());
+		MazeGame main = new MazeGame(START);
+		while(main.run());
 	}
 	
 	public MazeGame(int state){
