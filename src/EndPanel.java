@@ -1,7 +1,6 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -10,11 +9,11 @@ import javax.swing.JPanel;
 	/**
 	* @author Leah Williams
 	*/
-   	public class EndPanel extends JPanel implements ActionListener {
+   	@SuppressWarnings("serial")
+	public class EndPanel extends JPanel implements ActionListener {
    		/**
    		 * 
    		 */
-   		private static final long serialVersionUID = 1L;
    		private JButton replayButton = new JButton("Go Again");
    		private JButton quitButton = new JButton("Quit");
    		private int end = 0;
