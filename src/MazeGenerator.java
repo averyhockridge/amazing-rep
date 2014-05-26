@@ -7,6 +7,7 @@ import javax.swing.JPanel;
  *
  */
 
+@SuppressWarnings("serial")
 public class MazeGenerator extends JPanel{
 	private Graph<Integer> maze;
 	private int size;
