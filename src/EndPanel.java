@@ -12,18 +12,18 @@ import javax.swing.JPanel;
    	@SuppressWarnings("serial")
 	public class EndPanel extends JPanel implements ActionListener {
    		/**
-   		 * 
+   		 * Creating the final screen - either Go again or Quit the game
    		 */
    		private JButton replayButton = new JButton("Go Again");
    		private JButton quitButton = new JButton("Quit");
    		private int end = 0;
    		private int continueState = 0;
-   		//private JFrame frame;
+   		
 		
    		public EndPanel(int end){
    			this.end = end;
    			/**
-   			 * Draw the screen
+   			 * Draw the screen - depending on how the Play screen endded - ie User WON! or User lost
    			 */
    			JPanel messagePanel = new JPanel();
    			if (end == 1){	
@@ -34,10 +34,8 @@ import javax.swing.JPanel;
    			}
 		    messagePanel.setVisible(true);
    			JPanel buttonPanel = new JPanel();
-   			//JButton replayButton = new JButton("Go Again");
-   			replayButton.addActionListener(this);
-   			//JButton quitButton = new JButton("Quit");
-   			quitButton.addActionListener(this);
+     			replayButton.addActionListener(this);
+      			quitButton.addActionListener(this);
    			buttonPanel.add(replayButton);
    			buttonPanel.add(quitButton);
    			buttonPanel.setVisible(true);
@@ -45,7 +43,7 @@ import javax.swing.JPanel;
    			this.add(buttonPanel);
    		}  
    		/**
-   		 * get the chosen outcome - ie play on or quit
+   		 * Get the chosen outcome - ie play on or quit
    		 * @return endstatus
    		 */
 			
