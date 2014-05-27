@@ -10,35 +10,46 @@ import javax.swing.JPanel;
 	/**
 	* @author Leah Williams
 	*/
-	public class HelpPanel implements ActionListener{
-		
-	/*public HelpPanel(){
-		/**
-		 * Draw the screen
+@SuppressWarnings("serial")
+public class HelpPanel extends JPanel implements ActionListener{
+	         /**
+		 * Draw the Help screen
 		 */
-		public void drawGUI(){
-			JPanel messagePanel = new JPanel();
-			messagePanel.add(new JLabel("Here is your help page - This is how you should play the game"));
+		 
+	private JButton OkButton = new JButton("OK");
+   	private JButton quitButton = new JButton("Exit");
+   	JPanel messagePanel = new JPanel();
+	messagePanel.add(new JLabel("Here is your help page - This is how you should play the game"));
+	JPanel buttonPanel = new JPanel();
+		
 			
-			JPanel buttonPanel = new JPanel();
-	
-			JFrame frame = new JFrame();
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			frame.add(messagePanel, BorderLayout.NORTH);
-			frame.add(buttonPanel, BorderLayout.CENTER);
-			
-			frame.setSize(500, 500);
-			frame.setVisible(true);
-			
-		}
-
-		public void actionListiner(ActionEvent e){
-			
-		}
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-
-		}
+	public void actionListiner(ActionEvent e){
+		
 	}
+	
+	/**
+	 * Get the chosen outcome - ie play on or quit
+   	 * @return endstatus
+   	 */
+	@Override
+   	public void actionPerformed(ActionEvent e) {
+   	//   System.out.println("go again"); 
+   		if(e.getSource() == okButton){
+   			continueState = 1;
+   		} else if (e.getSource() == quitButton) {	
+   		//   System.out.println("quitting"); 
+   			continueState = 2;
+   		}
+   	}
+			
+   	/**
+   	 * 
+   	 * @return the state of the game
+   	 */
+   	public int getContinueState(){
+   		return continueState;
+   	}
+ }	
+			
+	
 
