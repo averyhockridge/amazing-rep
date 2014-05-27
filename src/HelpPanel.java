@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 	/**
 	* @author Leah Williams
 	*/
-@SuppressWarnings("serial")
+
 public class HelpPanel extends JPanel implements ActionListener{
 	         /**
 		 * Draw the Help screen
