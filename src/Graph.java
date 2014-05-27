@@ -2,7 +2,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Graph<E> implements GraphInterface<E>{
-
+       /*
+        * *@author  Brandon Sandoval, Leah Williams, Stuart Aitken
+        */
+    
 	public Graph() {
 		nodes = new ArrayList<E>();
 		graph = new ArrayList<ArrayList<E>>();
