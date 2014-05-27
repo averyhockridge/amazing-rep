@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Graphics;
 import java.awt.GridBagLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -77,16 +78,19 @@ public class MazeGame implements ActionListener {
 			
 			
 			mazeGen = new MazeGenerator(difficulty, 500, 500);
-			//mazeGen.setVisible(true);
-			
 			
 			play = new PlayPanel(difficulty, mazeGen);
+			
+			play.setOpaque(false);
+			frame.setGlassPane(play);
+			
 			play.setVisible(true);
 
-			//mazeGen.setBackground(new Color(255, 150, 0, 50));
+			mazeGen.setBackground(new Color(255, 150, 0, 50));
 			
-			//frame.add(mazeGen, BorderLayout.CENTER);
 			frame.add(play, BorderLayout.CENTER);
+			frame.add(mazeGen, BorderLayout.CENTER);
+			
 			
 			frame.setVisible(true);
 			
