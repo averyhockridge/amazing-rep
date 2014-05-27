@@ -59,6 +59,7 @@ public class PlayPanel extends JPanel{
 		
 		MazeGenerator mg = maze;
 		mg.setVisible(true);
+		
 		mazePanel.add(mg);
 		mazePanel.setVisible(true);
 				
@@ -69,7 +70,7 @@ public class PlayPanel extends JPanel{
 		player = new Player(playerLocation, difficulty, mg);
 		
 		
-		this.add(mazePanel, BorderLayout.NORTH);
+		this.add(maze, BorderLayout.NORTH);
 		this.add(buttonPanel, BorderLayout.EAST);
 		this.setBackground(new Color(100,200,150,100));
 		
@@ -89,11 +90,11 @@ public class PlayPanel extends JPanel{
 		mazePanel.paint(g);
 		int location = player.getLocation();
 		if(difficulty == 10) {
-			g.drawOval((location%difficulty)*50, (location/difficulty)*50, 50, 50);
-			//g.drawImage(player.getImage(), (location%difficulty)*50, (location/difficulty)*50, null);
+			//g.drawOval((location%difficulty)*50, (location/difficulty)*50, 50, 50);
+			g.drawImage(player.getImage(), (location%difficulty)*50, (location/difficulty)*50, null);
 		}
 		else if(difficulty == 20) {
-			g.drawOval((location%difficulty)*25, (location/difficulty)*25, 25, 25);	
+			//g.drawOval((location%difficulty)*25, (location/difficulty)*25, 25, 25);	
 		}
 	}
 	

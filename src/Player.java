@@ -1,8 +1,12 @@
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 /**
@@ -20,8 +24,13 @@ public class Player extends MazeCommon{
 	public Player(int startLocation, int size, MazeGenerator maze){
 		
 		location = startLocation;
-		ImageIcon img = new ImageIcon("/src/alien.gif");
-		player = img.getImage();
+		try {
+			BufferedImage img = ImageIO.read(new File("src/alien.gif"));
+			player = img;
+		} catch (IOException ex){
+			
+		}
+		
 		this.size = size;
 		this.maze = maze;
 		
