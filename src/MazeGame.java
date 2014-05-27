@@ -100,8 +100,7 @@ public class MazeGame implements ActionListener {
 
 			while(endState == 0){
 				endState = play.getEndState();	
-				//System.out.println("loop2");
-				//System.out.println("tessst");
+				System.out.println("loop2");
 			}
 			difficulty = 0;
 			state = END;

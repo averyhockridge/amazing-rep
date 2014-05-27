@@ -38,6 +38,7 @@ public class PlayPanel extends JPanel{
 		endState = 0;
 		int playerLocation = 0;
 		player = new Player(playerLocation, difficulty, maze);
+		goalLocation = difficulty * difficulty - 1;
 		
 		
 	}
@@ -61,6 +62,10 @@ public class PlayPanel extends JPanel{
 		else if(difficulty == 20) {
 			g.drawImage(player.getImage(), (location%difficulty)*25, (location/difficulty)*25, null);
 		}
+		if (location == goalLocation){
+			endState = 1;
+		}
+		System.out.println("Currently at " + location + " going to " + goalLocation);
 	}
 	
 	
