@@ -32,6 +32,7 @@ public class MazeCommon {
 		}
 		return ret;
 	}
+	
 	/**
 	 * Return a list of unvisited neighbours by comparing the 
 	 * visited list with a node
@@ -54,6 +55,7 @@ public class MazeCommon {
 		
 		return unvisitedNeighbours;
 	}
+	
 	/**
 	 * Return a list of visited neighbours by comparing the 
 	 * visited list with a node
@@ -76,6 +78,7 @@ public class MazeCommon {
 		
 		return visitedNeighbours;
 	}
+	
 	/**
 	 * Return a list of neighbours relative to the node, the 
 	 * list size should be between 2-4.
@@ -132,11 +135,24 @@ public class MazeCommon {
 		return neighbours;
 	}
 	
+
+	/**
+	 * Adds a link between 2 nodes
+	 * @param maze the maze
+	 * @param n1 the first node
+	 * @param n2 the second node
+	 */
 	public void addLink(Graph<Integer>maze, int n1, int n2) {
 		maze.addEdge(n1, n2);
 		maze.addEdge(n2, n1);
 	}
 	
+	/**
+	 * Deletes a link between 2 nodes
+	 * @param maze
+	 * @param n1
+	 * @param n2
+	 */
 	public void deleteLink(Graph<Integer> maze, int n1, int n2) {
 		maze.deleteEdge(n1, n2);
 		maze.deleteEdge(n2, n1);

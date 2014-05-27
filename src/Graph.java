@@ -1,11 +1,14 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * An implementation of the graph interface
+ * @author Brandon Sandoval, Leah Williams, Stuart Aitken
+ *
+ * @param <E>
+ */
 public class Graph<E> implements GraphInterface<E>{
-       /*
-        * *@author  Brandon Sandoval, Leah Williams, Stuart Aitken
-        */
-    
+
 	public Graph() {
 		nodes = new ArrayList<E>();
 		graph = new ArrayList<ArrayList<E>>();

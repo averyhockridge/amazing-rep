@@ -23,7 +23,7 @@ import javax.swing.JPanel;
    		public EndPanel(int end){
    			this.end = end;
    			/**
-   			 * Draw the screen - depending on how the Play screen endded - ie User WON! or User lost
+   			 * Draw the screen - depending on how the Play screen ended - i.e. User WON! or User lost
    			 */
    			JPanel messagePanel = new JPanel();
    			if (end == 1){	

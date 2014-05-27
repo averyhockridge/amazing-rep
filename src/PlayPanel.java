@@ -1,7 +1,10 @@
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -24,6 +27,10 @@ public class PlayPanel extends JPanel{
 	 * 
 	 */
 	public PlayPanel(int difficulty){
+		
+		
+		
+		
 		JPanel mazePanel = new JPanel();
 		JPanel buttonPanel = new JPanel();
 		JButton winButton= new JButton("Simulate Win");
@@ -49,15 +56,18 @@ public class PlayPanel extends JPanel{
 		
 	    buttonPanel.add(winButton);
 	    buttonPanel.add(lossButton);
-		buttonPanel.setVisible(true);	
-	    
+		buttonPanel.setVisible(true);
+		
 		mazePanel.add(new MazeGenerator(difficulty, 200, 200));
 		mazePanel.setVisible(true);
+		
+		
 		
 		this.difficulty = difficulty;
 		endState = 0;
 		location = 0;
 		player = new Player(location, difficulty);
+		
 		
 		this.add(mazePanel);
 		this.add(buttonPanel);
@@ -69,6 +79,7 @@ public class PlayPanel extends JPanel{
 	}
 	
 	public void paint(Graphics g) {
+		super.paint(g);
 		location = player.getLocation();
 		if(difficulty == 10) {
 			g.drawOval((location%difficulty)*50, (location/difficulty)*50, 50, 50);
@@ -76,5 +87,11 @@ public class PlayPanel extends JPanel{
 		else if(difficulty == 20) {
 			g.drawOval((location%difficulty)*25, (location/difficulty)*25, 25, 25);	
 		}
+	}
+	
+	
+	public void keyReleased(KeyEvent e){
+		player.keyReleased(e);
+		repaint();
 	}
 }

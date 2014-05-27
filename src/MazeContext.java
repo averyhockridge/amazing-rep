@@ -10,7 +10,12 @@ public class MazeContext {
 		this.mazeStrategy = mazeStrategy;
 	}
 	
+	/**
+	 * Executes a maze generating strategy
+	 * @param size
+	 * @return
+	 */
 	public Graph<Integer> executeStrategy(int size) {
-		return this.mazeStrategy.execute(size);
+		return mazeStrategy.execute(size);
 	}
 }

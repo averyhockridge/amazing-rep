@@ -10,7 +10,7 @@ import javax.swing.ImageIcon;
  * @author Stuart Aitken, Leah Williamson, Brandon Sandoval Avery Hockridge
  *
  */
-public class Player extends MazeCommon implements KeyListener{
+public class Player extends MazeCommon{
 	
 	private int location;
 	private Image player;
@@ -84,16 +84,11 @@ public class Player extends MazeCommon implements KeyListener{
 		return ret;
 	}
 
-	@Override
-	public void keyPressed(KeyEvent arg0) {
-		
-		
-	}
 
-	@Override
+
+
 	public void keyReleased(KeyEvent arg0) {
 		int code = arg0.getKeyCode();
-		
 		if (code == KeyEvent.VK_UP){
 			movePlayer("up");
 		} else if (code == KeyEvent.VK_DOWN){
@@ -106,10 +101,6 @@ public class Player extends MazeCommon implements KeyListener{
 		
 	}
 
-	@Override
-	public void keyTyped(KeyEvent arg0) {
-		
-	}
 	
 	/**
 	 * 

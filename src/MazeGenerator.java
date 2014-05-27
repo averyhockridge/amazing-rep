@@ -1,4 +1,6 @@
+import java.awt.Color;
 import java.awt.Graphics;
+
 import javax.swing.JPanel;
 
 /**
@@ -25,6 +27,7 @@ public class MazeGenerator extends JPanel{
 		this.size = size;
 		this.width = width;
 		this.height = height;
+		
 		
 		maze = new Graph<Integer>();
 		maze = context.executeStrategy(size);

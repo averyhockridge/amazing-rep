@@ -1,11 +1,16 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
 import javax.swing.JFrame;
 
 /**
+ * The main game class
  * @author Stuart Aitken, Brandon Sandoval, Leah Williams
  *
  */
@@ -28,6 +33,10 @@ public class MazeGame implements ActionListener {
 		this.state = state;
 	}
 	
+	/**
+	 * Runs the game.
+	 * @return
+	 */
 	public boolean run() {
 		StartPanel start = null;
 		PlayPanel play = null;
@@ -72,10 +81,14 @@ public class MazeGame implements ActionListener {
 			frame.add(mazeGen, BorderLayout.CENTER);
 			
 			frame.setVisible(true);
+			
+			frame.addKeyListener(new KeyboardListener(play));
+			frame.setFocusable(true);
+			
 
 			while(endState == 0){
 				endState = play.getEndState();	
-				System.out.println("loop2");
+				//System.out.println("loop2");
 			}
 			difficulty = 0;
 			state = END;
@@ -114,5 +127,22 @@ public class MazeGame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		
+	}
+	
+	/**
+	 * Listens to the keyboard, then passes it down to the PlayPanel
+	 * @author Avery Hockridge
+	 *
+	 */
+	private class KeyboardListener extends KeyAdapter {
+		private PlayPanel p;
+		
+		public KeyboardListener(PlayPanel p){
+			this.p = p;
+		}
+		public void keyReleased(KeyEvent e){
+			p.keyReleased(e);
+			System.out.println("Whutttt");
+		}
 	}
 }
