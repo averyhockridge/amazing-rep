@@ -103,6 +103,10 @@ public class Player extends MazeCommon{
 		return ret;
 	}
 	
+	/**
+	 * @param direction
+	 * @return true if the player can move in a particular direction
+	 */
 	public boolean canMove(String direction){
 		int check = location;
 		if(direction.equals("up")){
@@ -127,16 +131,20 @@ public class Player extends MazeCommon{
 
 
 
-
-	public void keyReleased(KeyEvent arg0) {
-		int code = arg0.getKeyCode();
-		if (code == KeyEvent.VK_UP){
+	/**
+	 * Triggers the player to move on key events -
+	 * arrow keys or wasd will move the player
+	 * @param e
+	 */
+	public void keyReleased(KeyEvent e) {
+		int code = e.getKeyCode();
+		if (code == KeyEvent.VK_UP || code == KeyEvent.VK_W){
 			movePlayer("up");
-		} else if (code == KeyEvent.VK_DOWN){
+		} else if (code == KeyEvent.VK_DOWN || code == KeyEvent.VK_S){
 			movePlayer("down");
-		} else if (code == KeyEvent.VK_LEFT){
+		} else if (code == KeyEvent.VK_LEFT || code == KeyEvent.VK_A){
 			movePlayer("left");
-		} else if (code == KeyEvent.VK_RIGHT){
+		} else if (code == KeyEvent.VK_RIGHT || code == KeyEvent.VK_D){
 			movePlayer("right");
 		}
 		

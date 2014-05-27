@@ -69,6 +69,10 @@ public class PlayPanel extends JPanel{
 	}
 	
 	
+	/**
+	 * runs when a key is pressed
+	 * @param e
+	 */
 	public void keyReleased(KeyEvent e){
 		player.keyReleased(e);
 		repaint();
