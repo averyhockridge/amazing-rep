@@ -26,7 +26,7 @@ public class DFS extends MazeCommon implements MazeStrategy{
 		ArrayList<Integer> visited = new ArrayList<Integer>();
 		ArrayList<Integer> adjacentCells = new ArrayList<Integer>();
 		int mazeSize = size*size;
-		int current = 0;
+		int current = (size*size)/2;
 		int temp = 0;
 		
 		// 1. Make the initial cell the current cell and mark it as visited
