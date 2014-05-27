@@ -28,7 +28,6 @@ public class MazeGenerator extends JPanel{
 		this.width = width;
 		this.height = height;
 		
-		
 		maze = new Graph<Integer>();
 		maze = context.executeStrategy(size);
 	}
@@ -60,5 +59,15 @@ public class MazeGenerator extends JPanel{
 				}
 			}
 		}
+	}
+	
+	/**
+	 * 
+	 * @param n
+	 * @param m
+	 * @return true if n and m are connected
+	 */
+	public boolean isConnected(int n, int m){
+		return maze.isConnected(n, m);
 	}
 }

@@ -53,11 +53,12 @@ public class MazeGame implements ActionListener {
 		//Centre window in middle of screen
 		Toolkit t = Toolkit.getDefaultToolkit();
         Dimension d = t.getScreenSize();
-		frame.setSize(750, 500);
+		frame.setSize(1028, 720);
         int h = (d.height - frame.getHeight()) /2;
         int w = (d.width - frame.getWidth()) /2;
 		frame.setLocation(w, h);
 	    frame.setVisible(true);
+	    frame.setResizable(false);
 
 		if(state == START) {
 			start = new StartPanel();
@@ -71,14 +72,23 @@ public class MazeGame implements ActionListener {
 			state = PLAY;
 		}
 		else if(state == PLAY) {			
-			play = new PlayPanel(difficulty);
-			play.setVisible(true);
+			
+			
 			
 			mazeGen = new MazeGenerator(difficulty, 500, 500);
 			mazeGen.setVisible(true);
+			
+			
+			play = new PlayPanel(difficulty, mazeGen);
+			play.setVisible(true);
 
-			frame.add(play, BorderLayout.NORTH);
+			mazeGen.setBackground(new Color(255, 150, 0, 50));
+			frame.add(play, BorderLayout.CENTER);
 			frame.add(mazeGen, BorderLayout.CENTER);
+			
+			
+			
+			
 			
 			frame.setVisible(true);
 			
@@ -89,6 +99,7 @@ public class MazeGame implements ActionListener {
 			while(endState == 0){
 				endState = play.getEndState();	
 				//System.out.println("loop2");
+				//System.out.println("tessst");
 			}
 			difficulty = 0;
 			state = END;
@@ -142,7 +153,6 @@ public class MazeGame implements ActionListener {
 		}
 		public void keyReleased(KeyEvent e){
 			p.keyReleased(e);
-			System.out.println("Whutttt");
 		}
 	}
 }

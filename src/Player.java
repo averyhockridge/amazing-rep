@@ -15,13 +15,15 @@ public class Player extends MazeCommon{
 	private int location;
 	private Image player;
 	private int size;
+	private MazeGenerator maze;
 	
-	public Player(int startLocation, int size){
+	public Player(int startLocation, int size, MazeGenerator maze){
 		
 		location = startLocation;
-		ImageIcon img = new ImageIcon("/src/alian.gif");
+		ImageIcon img = new ImageIcon("/src/alien.gif");
 		player = img.getImage();
 		this.size = size;
+		this.maze = maze;
 		
 	}
 	
@@ -49,7 +51,12 @@ public class Player extends MazeCommon{
 		}
 	}
 
-	private boolean canMove(String direction) {
+	/**
+	 * Checks if the player is within bounds
+	 * @param direction
+	 * @return
+	 */
+	private boolean withinBounds(String direction) {
 		ArrayList<Integer> neighbours = new ArrayList<Integer>(getNeighbours(location, size));
 		int check = 0;
 		boolean ret = false;
@@ -83,6 +90,28 @@ public class Player extends MazeCommon{
 		}
 		return ret;
 	}
+	
+	public boolean canMove(String direction){
+		int check = location;
+		if(direction.equals("up")){
+			check = location - size;
+		}
+		
+		if(direction.equals("down")){
+			check = location + size;
+		}
+		
+		if(direction.equals("left")){
+			check = location - 1;
+		}
+		
+		if(direction.equals("right")){
+			check = location + 1;
+		}
+		boolean ret = withinBounds(direction) && maze.isConnected(location, check);
+		System.out.println("Can now move " + direction + "? " + ret);
+		return ret;
+	}
 
 
 
@@ -110,7 +139,11 @@ public class Player extends MazeCommon{
 		return location;
 	}
 	
-	public Image getPlayer(){
+	/**
+	 * Gets the image of the player
+	 * @return
+	 */
+	public Image getImage(){
 		return player;
 	}
 }

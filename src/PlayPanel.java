@@ -1,4 +1,5 @@
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -10,28 +11,26 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
- * 
- * @author Stuart Aitken, Leah Williams, Brandon Sandoval
+ * The panel used while the game is being played
+ * @author Stuart Aitken, Leah Williams, Brandon Sandoval, Avery Hockridge
  *
  */
 @SuppressWarnings("serial")
 public class PlayPanel extends JPanel{
-	/**
-	 * 
-	 */
-	int endState;
-	int location;
-	Player player;
-	int difficulty;
-	/**
-	 * 
-	 */
-	public PlayPanel(int difficulty){
-		
-		
-		
-		
-		JPanel mazePanel = new JPanel();
+
+	private int    endState;
+	private Player player;
+	private int    difficulty;
+	private int    goalLocation;
+	private JPanel mazePanel;
+
+    /**
+     * PlayPanel constructor - adds a bunch of gui elements and a player
+     * @param difficulty the difficulty of the maze.
+     */
+	public PlayPanel(int difficulty, MazeGenerator maze){
+
+		mazePanel = new JPanel();
 		JPanel buttonPanel = new JPanel();
 		JButton winButton= new JButton("Simulate Win");
 		JButton lossButton = new JButton("Simulate Loss");
@@ -58,31 +57,40 @@ public class PlayPanel extends JPanel{
 	    buttonPanel.add(lossButton);
 		buttonPanel.setVisible(true);
 		
-		mazePanel.add(new MazeGenerator(difficulty, 200, 200));
+		MazeGenerator mg = maze;
+		mg.setVisible(true);
+		mazePanel.add(mg);
 		mazePanel.setVisible(true);
-		
-		
+				
 		
 		this.difficulty = difficulty;
 		endState = 0;
-		location = 0;
-		player = new Player(location, difficulty);
+		int playerLocation = 0;
+		player = new Player(playerLocation, difficulty, mg);
 		
 		
-		this.add(mazePanel);
-		this.add(buttonPanel);
+		this.add(mazePanel, BorderLayout.NORTH);
+		this.add(buttonPanel, BorderLayout.EAST);
+		this.setBackground(new Color(100,200,150,100));
 		
 	}
 	
+	/**
+	 * 
+	 * @return the endState (0 if it hasn't ended yet)
+	 */
 	public int getEndState(){
 		return endState;
 	}
 	
+
 	public void paint(Graphics g) {
 		super.paint(g);
-		location = player.getLocation();
+		mazePanel.paint(g);
+		int location = player.getLocation();
 		if(difficulty == 10) {
 			g.drawOval((location%difficulty)*50, (location/difficulty)*50, 50, 50);
+			//g.drawImage(player.getImage(), (location%difficulty)*50, (location/difficulty)*50, null);
 		}
 		else if(difficulty == 20) {
 			g.drawOval((location%difficulty)*25, (location/difficulty)*25, 25, 25);	
