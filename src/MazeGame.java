@@ -147,7 +147,7 @@ public class MazeGame implements ActionListener {
 	 * @author Avery Hockridge
 	 *
 	 */
-	private class KeyboardListener extends KeyAdapter {
+	public class KeyboardListener extends KeyAdapter {
 		private PlayPanel p;
 		
 		public KeyboardListener(PlayPanel p){

@@ -17,7 +17,8 @@ import javax.swing.ImageIcon;
 public class Player extends MazeCommon{
 	
 	private int location;
-	private Image player;
+	private Image playerImageLarge;
+	private Image playerImageSmall;
 	private int size;
 	private MazeGenerator maze;
 	
@@ -26,7 +27,9 @@ public class Player extends MazeCommon{
 		location = startLocation;
 		try {
 			BufferedImage img = ImageIO.read(new File("src/alien.gif"));
-			player = img;
+			playerImageLarge = img;
+			img = ImageIO.read(new File("src/alienSmall.gif"));
+			playerImageSmall = img;
 		} catch (IOException ex){
 			
 		}
@@ -153,6 +156,12 @@ public class Player extends MazeCommon{
 	 * @return
 	 */
 	public Image getImage(){
-		return player;
+		Image img = null;
+		if (size < 20){
+			img = playerImageLarge;
+		} else {
+			img = playerImageSmall;
+		}
+		return img;
 	}
 }

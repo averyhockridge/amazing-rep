@@ -9,7 +9,6 @@ import javax.swing.JPanel;
  *
  */
 
-@SuppressWarnings("serial")
 public class MazeGenerator extends JPanel{
 	private Graph<Integer> maze;
 	private int size;
@@ -27,6 +26,8 @@ public class MazeGenerator extends JPanel{
 		this.size = size;
 		this.width = width;
 		this.height = height;
+		
+		this.setBackground(new Color(0,0,0,150));
 		
 		maze = new Graph<Integer>();
 		maze = context.executeStrategy(size);
