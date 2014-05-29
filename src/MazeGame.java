@@ -67,10 +67,16 @@ public class MazeGame implements ActionListener {
 			start.setVisible(true);
 			frame.add(start);
 			frame.setVisible(true);
-			while(difficulty == 0) {
-				difficulty = start.getDifficulty();	
-				System.out.println("loop1");	
-			}
+			
+			do{
+				try {
+					Thread.sleep(20);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				difficulty = start.getDifficulty();
+			} while((difficulty == 0));
+			
 			state = PLAY;
 		}
 		else if(state == PLAY) {			
@@ -97,11 +103,15 @@ public class MazeGame implements ActionListener {
 			frame.addKeyListener(new KeyboardListener(play));
 			frame.setFocusable(true);
 			
-
-			while(endState == 0){
-				endState = play.getEndState();	
-				System.out.println("loop2");
-			}
+			do{
+				try {
+					Thread.sleep(20);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				endState = play.getEndState();
+			}while(endState == 0);
+			
 			difficulty = 0;
 			state = END;
 		}
@@ -109,10 +119,16 @@ public class MazeGame implements ActionListener {
 			end = new EndPanel(endState);
 		    frame.add(end, BorderLayout.CENTER);
 			end.setVisible(true);
-			while(continueGame == 0) {
-				continueGame = end.getContinueState();	
-				System.out.println("loop3");
-			}
+			
+			do{
+				try {
+					Thread.sleep(20);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				continueGame = end.getContinueState();
+			}while(continueGame == 0);
+			
 			if(continueGame == 2) {
 				state = QUIT;
 			}
