@@ -1,18 +1,25 @@
 import java.awt.BorderLayout;
+import java.awt.Graphics;
+import java.awt.GridBagLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 
 import java.io.File;
+import java.io.IOException;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import javax.swing.JFrame;
 
@@ -31,7 +38,7 @@ public class MazeGame implements ActionListener {
 	private int difficulty = 0;
 	private int endState = 0;
 	
-	public static void main(String[] args) throws Exception{
+	public static void main(String[] args) {
 		MazeGame main = new MazeGame(START);
 		while(main.run());
 	}
@@ -44,7 +51,7 @@ public class MazeGame implements ActionListener {
 	 * Runs the game.
 	 * @return
 	 */
-	public boolean run() throws Exception{
+	public boolean run() {
 		StartPanel start = null;
 		PlayPanel play = null;
 		MazeGenerator mazeGen = null;
@@ -60,7 +67,7 @@ public class MazeGame implements ActionListener {
 		//Centre window in middle of screen
 		Toolkit t = Toolkit.getDefaultToolkit();
         Dimension d = t.getScreenSize();
-		frame.setSize(1028, 720);
+		frame.setSize(851, 532);
         int h = (d.height - frame.getHeight()) /2;
         int w = (d.width - frame.getWidth()) /2;
 		frame.setLocation(w, h);
@@ -69,21 +76,35 @@ public class MazeGame implements ActionListener {
 	    
 	    //specify the sound to play
 	    File soundFile = new File("resources/theme.wav");
-	    AudioInputStream sound = AudioSystem.getAudioInputStream(soundFile);
-
+	    AudioInputStream sound = null;
+		try {
+			sound = AudioSystem.getAudioInputStream(soundFile);
+		} catch (UnsupportedAudioFileException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 	    //load the sound into Clip
 	    DataLine.Info info = new DataLine.Info(Clip.class, sound.getFormat());
-	    Clip clip = (Clip) AudioSystem.getLine(info);
-	    clip.open(sound);
+	    Clip clip = null;
+		try {
+			clip = (Clip) AudioSystem.getLine(info);
+		} catch (LineUnavailableException e1) {
+			e1.printStackTrace();
+		}
+	    try {
+			clip.open(sound);
+		} catch (LineUnavailableException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 
 		if(state == START) {
 			start = new StartPanel();
 			start.setVisible(true);
 			frame.add(start);
 			frame.setVisible(true);
-			
-			// play the sound clip
-		    	clip.start();
 			
 			do{
 				try {
@@ -98,7 +119,9 @@ public class MazeGame implements ActionListener {
 		}
 		else if(state == PLAY) {			
 			
-			
+
+			// play the sound clip
+		    	clip.start();
 			
 			mazeGen = new MazeGenerator(difficulty, 500, 500);
 			
@@ -108,8 +131,6 @@ public class MazeGame implements ActionListener {
 			frame.setGlassPane(play);
 			
 			play.setVisible(true);
-
-			mazeGen.setBackground(new Color(255, 150, 0, 50));
 			
 			frame.add(play, BorderLayout.CENTER);
 			frame.add(mazeGen, BorderLayout.CENTER);
@@ -119,6 +140,7 @@ public class MazeGame implements ActionListener {
 			
 			frame.addKeyListener(new KeyboardListener(play));
 			frame.setFocusable(true);
+			play.repaint();
 			
 			do{
 				try {
