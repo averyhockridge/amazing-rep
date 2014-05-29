@@ -33,7 +33,7 @@ public class MazeGame implements ActionListener {
 	private int difficulty = 0;
 	private int endState = 0;
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception{
 		MazeGame main = new MazeGame(START);
 		while(main.run());
 	}
@@ -46,7 +46,7 @@ public class MazeGame implements ActionListener {
 	 * Runs the game.
 	 * @return
 	 */
-	public boolean run() {
+	public boolean run() throws Exception{
 		StartPanel start = null;
 		PlayPanel play = null;
 		MazeGenerator mazeGen = null;
