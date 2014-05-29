@@ -1,6 +1,11 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 /**
@@ -27,7 +32,7 @@ public class MazeGenerator extends JPanel{
 		this.width = width;
 		this.height = height;
 		
-		this.setBackground(new Color(0,0,0,150));
+		this.setBackground(new Color(0,255,0,150));
 		
 		maze = new Graph<Integer>();
 		maze = context.executeStrategy(size);
@@ -38,7 +43,18 @@ public class MazeGenerator extends JPanel{
 	 * when we decide the technical details of the GUI
 	 */
 	public void paint(Graphics g) {
+		Image background = null;
+		try {
+			BufferedImage img = ImageIO.read(new File("resources/background.jpg"));
+			background = img;
+		} catch (IOException ex){
+			
+		}
+		g.drawImage(background, 0, 0, null);
 		//Border
+		g.setColor(new Color(0,128,0));
+		g.drawRect(0, 0, width, height);
+		//g.draw
 		g.drawLine(0, 0, 0, height);
 		g.drawLine(0, 0, width, 0);
 		g.drawLine(width, height, width, 0);
