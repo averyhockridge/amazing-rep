@@ -9,6 +9,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import java.io.File;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
+
 import javax.swing.JFrame;
 
 /**
@@ -61,12 +68,24 @@ public class MazeGame implements ActionListener {
 		frame.setLocation(w, h);
 	    frame.setVisible(true);
 	    frame.setResizable(false);
+	    
+	    //specify the sound to play
+	    File soundFile = new File("resources/theme.wav");
+	    AudioInputStream sound = AudioSystem.getAudioInputStream(soundFile);
+
+	    //load the sound into Clip
+	    DataLine.Info info = new DataLine.Info(Clip.class, sound.getFormat());
+	    Clip clip = (Clip) AudioSystem.getLine(info);
+	    clip.open(sound);
 
 		if(state == START) {
 			start = new StartPanel();
 			start.setVisible(true);
 			frame.add(start);
 			frame.setVisible(true);
+			
+			// play the sound clip
+		    	clip.start();
 			
 			do{
 				try {
