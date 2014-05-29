@@ -66,17 +66,18 @@ public class MazeGame implements ActionListener {
 		
 		//Centre window in middle of screen
 		Toolkit t = Toolkit.getDefaultToolkit();
-        Dimension d = t.getScreenSize();
+        	Dimension d = t.getScreenSize();
 		frame.setSize(851, 532);
-        int h = (d.height - frame.getHeight()) /2;
-        int w = (d.width - frame.getWidth()) /2;
+		frame.setTitle("Space Maze Game");
+        	int h = (d.height - frame.getHeight()) /2;
+        	int w = (d.width - frame.getWidth()) /2;
 		frame.setLocation(w, h);
-	    frame.setVisible(true);
-	    frame.setResizable(false);
+		 frame.setVisible(true);
+	    	frame.setResizable(false);
 	    
-	    //specify the sound to play
-	    File soundFile = new File("resources/theme.wav");
-	    AudioInputStream sound = null;
+		//specify the sound to play
+		File soundFile = new File("resources/theme.wav");
+		AudioInputStream sound = null;
 		try {
 			sound = AudioSystem.getAudioInputStream(soundFile);
 		} catch (UnsupportedAudioFileException e1) {
