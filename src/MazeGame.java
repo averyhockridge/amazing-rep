@@ -1,6 +1,4 @@
 import java.awt.BorderLayout;
-import java.awt.Graphics;
-import java.awt.GridBagLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
