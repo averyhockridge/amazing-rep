@@ -19,6 +19,7 @@ public class MazeGenerator extends JPanel{
 	private int size;
 	private int width;
 	private int height;
+	Image background = null;
 	
 	/**
 	 * 
@@ -31,6 +32,13 @@ public class MazeGenerator extends JPanel{
 		this.size = size;
 		this.width = width;
 		this.height = height;
+		;
+		try {
+			BufferedImage img = ImageIO.read(new File("resources/background.jpg"));
+			background = img;
+		} catch (IOException ex){
+			
+		}
 		
 		this.setBackground(new Color(0,255,0,150));
 		
@@ -43,13 +51,6 @@ public class MazeGenerator extends JPanel{
 	 * when we decide the technical details of the GUI
 	 */
 	public void paint(Graphics g) {
-		Image background = null;
-		try {
-			BufferedImage img = ImageIO.read(new File("resources/background.jpg"));
-			background = img;
-		} catch (IOException ex){
-			
-		}
 		g.drawImage(background, 0, 0, null);
 		//Border
 		g.setColor(new Color(0,128,0));
