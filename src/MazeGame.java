@@ -1,15 +1,10 @@
 import java.awt.BorderLayout;
-import java.awt.Graphics;
-import java.awt.GridBagLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,15 +23,15 @@ import javax.swing.JFrame;
  * @author Stuart Aitken, Brandon Sandoval, Leah Williams
  *
  */
-public class MazeGame implements ActionListener {
+public class MazeGame {
 
 	private final static int START = 0;
-	private final int PLAY = 1;
-	private final int END = 2;
-	private final int QUIT = 3;
-	private int state;
-	private int difficulty = 0;
-	private int endState = 0;
+	private final int        PLAY  = 1;
+	private final int        END   = 2;
+	private final int        QUIT  = 3;
+	private int              state;
+	private int              difficulty = 0;
+	private int              endState   = 0;
 	
 	public static void main(String[] args) {
 		MazeGame main = new MazeGame(START);
@@ -72,8 +67,8 @@ public class MazeGame implements ActionListener {
         	int h = (d.height - frame.getHeight()) /2;
         	int w = (d.width - frame.getWidth()) /2;
 		frame.setLocation(w, h);
-		 frame.setVisible(true);
-	    	frame.setResizable(false);
+		frame.setVisible(true);
+	    frame.setResizable(false);
 	    
 		//specify the sound to play
 		File soundFile = new File("resources/theme.wav");
@@ -101,12 +96,14 @@ public class MazeGame implements ActionListener {
 			e1.printStackTrace();
 		}
 
+	    //Start of the game
 		if(state == START) {
 			start = new StartPanel();
 			start.setVisible(true);
 			frame.add(start);
 			frame.setVisible(true);
 			
+			//Wait for the difficulty to get set
 			do{
 				try {
 					Thread.sleep(20);
@@ -116,13 +113,14 @@ public class MazeGame implements ActionListener {
 				difficulty = start.getDifficulty();
 			} while((difficulty == 0));
 			
+			//Then move onto the play screen
 			state = PLAY;
 		}
 		else if(state == PLAY) {			
 			
 
 			// play the sound clip
-		    	clip.start();
+		    clip.start();
 			
 			mazeGen = new MazeGenerator(difficulty, 500, 500);
 			
@@ -143,6 +141,7 @@ public class MazeGame implements ActionListener {
 			frame.setFocusable(true);
 			play.repaint();
 			
+			//Wait for the game to end
 			do{
 				try {
 					Thread.sleep(20);
@@ -186,15 +185,6 @@ public class MazeGame implements ActionListener {
 			ret = true;
 		}
 		return ret;
-	}
-
-	public void actionListener(ActionEvent e) {
-		
-	}
-	
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		
 	}
 	
 	/**

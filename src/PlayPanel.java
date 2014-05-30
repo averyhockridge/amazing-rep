@@ -22,8 +22,8 @@ public class PlayPanel extends JPanel{
 	private Player player;
 	private int    difficulty;
 	private int    goalLocation;
-	private Timer timer;
-	private int timeLimit;
+	private Timer  timer;
+	private int    timeLimit;
 
     /**
      * PlayPanel constructor - adds a bunch of gui elements and a player
