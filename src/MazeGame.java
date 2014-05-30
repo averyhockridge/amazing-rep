@@ -51,7 +51,6 @@ public class MazeGame {
 		PlayPanel play = null;
 		MazeGenerator mazeGen = null;
 		EndPanel end = null;
-		HelpPanel help = null;
 
 		boolean ret;
 		int continueGame = 0;
@@ -75,7 +74,7 @@ public class MazeGame {
 		bar.setPreferredSize(new Dimension(851, 70));
 	    frame.add(bar, BorderLayout.PAGE_START);
 	    
-		//specify the sound to play
+		//specify the sound to play - from www.classicgaming.cc/classics/pacman/sounds.php
 		File soundFile = new File("resources/theme.wav");
 		AudioInputStream sound = null;
 		try {

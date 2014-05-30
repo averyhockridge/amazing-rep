@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 /**
+ * the start panel
  * @author Stuart Aitken
  */
 public class StartPanel extends JPanel {
@@ -46,6 +47,7 @@ public class StartPanel extends JPanel {
 		message.setAlignmentX(Component.CENTER_ALIGNMENT);
 		messagePanel.add(message);
 
+		//Background from wallpapersinhq.com/150816-outer_space_in_green/
 		try {
 			BufferedImage img = ImageIO.read(new File(
 					"resources/background1.jpg"));

@@ -43,7 +43,7 @@ public class PlayPanel extends JPanel{
 		this.setLayout(new GridLayout());
 		
 		//timer and ActionListener - ends game on time = 0
-		timeLimit = difficulty * 2;
+		timeLimit = difficulty * 2 + 20;
 		final JLabel timerLabel = new JLabel("Start");
 		timerLabel.setFont(new Font("Serif", Font.PLAIN, 150));
 		timerLabel.setForeground(new Color(166, 105, 174, 255));
