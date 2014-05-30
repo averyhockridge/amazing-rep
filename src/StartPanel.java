@@ -32,14 +32,14 @@ public class StartPanel extends JPanel {
 		messagePanel.setLayout(new BoxLayout(messagePanel, BoxLayout.Y_AXIS));
 		messagePanel.setOpaque(false);
 		JLabel message = new JLabel("Choose difficulty to start the game");
-		message.setFont(new Font("Sans Serif", Font.PLAIN, 16));
+		message.setFont(new Font("Sans Serif", Font.PLAIN, 20));
 		message.setForeground(new Color(0, 255, 0, 150));
 		message.setAlignmentX(Component.CENTER_ALIGNMENT);
 		messagePanel.add(message);
 
 		try {
 			BufferedImage img = ImageIO.read(new File(
-					"resources/background.jpg"));
+					"resources/background1.jpg"));
 			background = img;
 		} catch (IOException ex) {
 		}
@@ -68,26 +68,20 @@ public class StartPanel extends JPanel {
 		hardButton.setBorder(null);
 		buttonPanel.add(hardButton);
 
-		easyButton.addActionListener(new
-	            ActionListener()
-	            {
-	               public void actionPerformed(ActionEvent event)
-	               {
-	            	   difficulty = 20;
-	               }
-	            });		
-		
-		hardButton.addActionListener(new
-	            ActionListener()
-	            {
-	               public void actionPerformed(ActionEvent event)
-	               {
-	            	   difficulty = 25;
-	               }
-	            });
+		easyButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				difficulty = 10;
+			}
+		});
+
+		hardButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				difficulty = 20;
+			}
+		});
 
 		messagePanel.add(buttonPanel);
-		this.add(messagePanel, BorderLayout.EAST);
+		this.add(messagePanel, BorderLayout.CENTER);
 	}
 
 	/**
