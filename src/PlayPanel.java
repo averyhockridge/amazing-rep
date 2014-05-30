@@ -73,10 +73,10 @@ public class PlayPanel extends JPanel{
 		
 		int location = player.getLocation();
 		if(difficulty == 10) {
-			g.drawImage(player.getImage(), (location%difficulty)*50, (location/difficulty)*50, null);
+			g.drawImage(player.getImage(), (location%difficulty)*50, (location/difficulty)*50+73, null);
 		}
 		else if(difficulty == 20) {
-			g.drawImage(player.getImage(), (location%difficulty)*25, (location/difficulty)*25, null);
+			g.drawImage(player.getImage(), (location%difficulty)*25, (location/difficulty)*25+73, null);
 		}
 		if (location == goalLocation){
 			endState = 1;
