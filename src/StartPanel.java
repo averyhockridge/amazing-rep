@@ -70,13 +70,13 @@ public class StartPanel extends JPanel {
 
 		easyButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
-				difficulty = 10;
+				difficulty = 20;
 			}
 		});
 
 		hardButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
-				difficulty = 20;
+				difficulty = 25;
 			}
 		});
 
