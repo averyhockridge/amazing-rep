@@ -27,13 +27,11 @@ import javax.swing.JPanel;
    		 * Creating the final screen - either Go again or Quit the game
    		 */
 
-   		//private int end = 0;
    		private int continueState = 0;
 		private Image background;
    		
 		
    		public EndPanel(int end){
-   			//this.end = end;
    			/**
    			 * Draw the screen - depending on how the Play screen ended - i.e. User WON! or User lost
    			 */
@@ -43,12 +41,13 @@ import javax.swing.JPanel;
    			messagePanel.setLayout(new BoxLayout(messagePanel, BoxLayout.Y_AXIS));
    			messagePanel.setOpaque(false);
    			
-   			JPanel message = new JPanel();
+   			JLabel message = new JLabel();
    			
    			if (end == 1){	
-   				message.add(new JLabel("Congratulations You Won! - Would you like to play again?"));
+   				//message.add(new JLabel("Choose difficulty to start the game"));
+   				message = new JLabel("Congratulations You Won! - Would you like to play again?");
    			}else {
-   				message.add(new JLabel("Sorry you lost! - Would you like to try again?"));	
+   				message = new JLabel("Sorry you lost! - Would you like to try again?");	
    			}
    			
    			message.setFont(new Font("Sans Serif", Font.PLAIN, 20));
@@ -70,7 +69,7 @@ import javax.swing.JPanel;
    			JButton replayButton = new JButton();
    			try {
    				BufferedImage img = ImageIO.read(new File(
-   						"resources/easybutton.jpg"));
+   						"resources/goAgainbutton.jpg"));
    				replayButton.setIcon(new ImageIcon(img));
    			} catch (IOException ex) {
    			}
@@ -80,7 +79,7 @@ import javax.swing.JPanel;
    			JButton quitButton = new JButton();
    			try {
    				BufferedImage img = ImageIO.read(new File(
-   						"resources/hardbutton.jpg"));
+   						"resources/quitbutton.jpg"));
    				quitButton.setIcon(new ImageIcon(img));
    			} catch (IOException ex) {
    			}
