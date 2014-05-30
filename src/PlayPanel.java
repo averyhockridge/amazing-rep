@@ -1,5 +1,6 @@
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,11 +32,13 @@ public class PlayPanel extends JPanel{
 	public PlayPanel(int difficulty, MazeGenerator maze){
 		
 		//timer and ActionListener - ends game on time = 0
-		final JLabel label = new JLabel("Start");
-		this.add(label).setForeground(new Color(0,255,0,150));
+		final JLabel timerLabel = new JLabel("Start");
+		timerLabel.setFont(new Font("Serif", Font.PLAIN, 30));
+		timerLabel.setForeground(new Color(0,255,0,150));
+		this.add(timerLabel);
 		timer = new Timer(1000, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                label.setText(String.valueOf(counter));
+            	timerLabel.setText(String.valueOf(counter));
                 counter--;
                 if (counter == 0) {
                       timer.stop();
