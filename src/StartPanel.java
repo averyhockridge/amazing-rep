@@ -68,17 +68,23 @@ public class StartPanel extends JPanel {
 		hardButton.setBorder(null);
 		buttonPanel.add(hardButton);
 
-		easyButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent event) {
-				difficulty = 10;
-			}
-		});
-
-		hardButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent event) {
-				difficulty = 20;
-			}
-		});
+		easyButton.addActionListener(new
+	            ActionListener()
+	            {
+	               public void actionPerformed(ActionEvent event)
+	               {
+	            	   difficulty = 20;
+	               }
+	            });		
+		
+		hardButton.addActionListener(new
+	            ActionListener()
+	            {
+	               public void actionPerformed(ActionEvent event)
+	               {
+	            	   difficulty = 25;
+	               }
+	            });
 
 		messagePanel.add(buttonPanel);
 		this.add(messagePanel, BorderLayout.EAST);
