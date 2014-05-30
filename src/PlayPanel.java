@@ -1,15 +1,13 @@
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import javax.swing.JButton;
-import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 /**
  * The panel used while the game is being played
@@ -23,16 +21,29 @@ public class PlayPanel extends JPanel{
 	private Player player;
 	private int    difficulty;
 	private int    goalLocation;
-	private JPanel mazePanel;
+	private Timer timer;
+	private int counter = 15;
 
     /**
      * PlayPanel constructor - adds a bunch of gui elements and a player
      * @param difficulty the difficulty of the maze.
      */
 	public PlayPanel(int difficulty, MazeGenerator maze){
-
-		mazePanel = new JPanel();
-				
+		
+		//timer and ActionListener - ends game on time = 0
+		final JLabel label = new JLabel("Start");
+		this.add(label).setForeground(new Color(0,255,0,150));
+		timer = new Timer(1000, new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                label.setText(String.valueOf(counter));
+                counter--;
+                if (counter == 0) {
+                      timer.stop();
+                      endState = 2;                      
+                }
+            }
+        });
+		timer.start();
 		
 		this.difficulty = difficulty;
 		endState = 0;
@@ -78,3 +89,9 @@ public class PlayPanel extends JPanel{
 		repaint();
 	}
 }
+
+
+
+
+
+
