@@ -140,7 +140,6 @@ public class Player extends MazeCommon{
 			check = location + 1;
 		}
 		boolean ret = withinBounds(direction) && maze.isConnected(location, check);
-		System.out.println("Can now move " + direction + "? " + ret);
 		return ret;
 	}
 
