@@ -53,8 +53,9 @@ public class PlayPanel extends JPanel{
 		
 		timer = new Timer(1000, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	timeLimit--;
             	timerLabel.setText(String.valueOf(timeLimit));
-                timeLimit--;
+                
                 if(timeLimit < 10){
                 	timerLabel.setForeground(Color.RED);
                 }
