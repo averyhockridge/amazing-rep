@@ -1,46 +1,62 @@
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import javax.swing.JButton;
-import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 /**
  * The panel used while the game is being played
  * @author Stuart Aitken, Leah Williams, Brandon Sandoval, Avery Hockridge
  *
  */
+@SuppressWarnings("serial")
 public class PlayPanel extends JPanel{
 
-	private final int EASY = 20;
-	private final int HARD = 25;
 	private int    endState;
 	private Player player;
 	private int    difficulty;
 	private int    goalLocation;
-	private JPanel mazePanel;
+	private Timer timer;
+	private int timeLimit;
 
     /**
      * PlayPanel constructor - adds a bunch of gui elements and a player
      * @param difficulty the difficulty of the maze.
      */
 	public PlayPanel(int difficulty, MazeGenerator maze){
-
-		mazePanel = new JPanel();
-				
+	timeLimit = difficulty * 2;
+		
+		
+		//timer and ActionListener - ends game on time = 0
+		final JLabel timerLabel = new JLabel("Start");
+		timerLabel.setFont(new Font("Serif", Font.PLAIN, 30));
+		timerLabel.setForeground(new Color(0,255,0,150));
+		
+		this.add(timerLabel, BorderLayout.EAST);
+		timer = new Timer(1000, new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	timerLabel.setText(String.valueOf(timeLimit));
+                timeLimit--;
+                if (timeLimit == 0) {
+                      timer.stop();
+                      endState = 2;
+                }
+            }
+        });
+		timer.start();
 		
 		this.difficulty = difficulty;
 		endState = 0;
 		int playerLocation = 0;
 		player = new Player(playerLocation, difficulty, maze);
-		goalLocation = difficulty * difficulty - 1;
-		
+		goalLocation = difficulty * difficulty - 1;		
 		
 	}
 	
@@ -57,16 +73,15 @@ public class PlayPanel extends JPanel{
 		super.paint(g);
 		
 		int location = player.getLocation();
-		if(difficulty == EASY) {
-			g.drawImage(player.getImage(), (location%difficulty)*(500/EASY), (location/difficulty)*(500/EASY)+71, (500/EASY), (500/EASY), null);
+		if(difficulty == 10) {
+			g.drawImage(player.getImage(), (location%difficulty)*50, (location/difficulty)*50+73, null);
 		}
-		else if(difficulty == HARD) {
-			g.drawImage(player.getImage(), (location%difficulty)*(500/HARD), (location/difficulty)*(500/HARD)+71, (500/HARD), (500/HARD), null);
+		else if(difficulty == 20) {
+			g.drawImage(player.getImage(), (location%difficulty)*25, (location/difficulty)*25+73, null);
 		}
 		if (location == goalLocation){
 			endState = 1;
 		}
-		System.out.println("Currently at " + location + " going to " + goalLocation);
 	}
 	
 	
@@ -79,3 +94,9 @@ public class PlayPanel extends JPanel{
 		repaint();
 	}
 }
+
+
+
+
+
+
