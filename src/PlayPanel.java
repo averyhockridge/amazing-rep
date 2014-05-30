@@ -16,7 +16,6 @@ import javax.swing.Timer;
  * @author Stuart Aitken, Leah Williams, Brandon Sandoval, Avery Hockridge
  *
  */
-@SuppressWarnings("serial")
 public class PlayPanel extends JPanel{
 
 	private int    endState;
@@ -73,15 +72,16 @@ public class PlayPanel extends JPanel{
 		super.paint(g);
 		
 		int location = player.getLocation();
-		if(difficulty == 10) {
-			g.drawImage(player.getImage(), (location%difficulty)*50, (location/difficulty)*50+73, null);
+		if(difficulty == EASY) {
+			g.drawImage(player.getImage(), (location%difficulty)*(500/EASY), (location/difficulty)*(500/EASY)+71, (500/EASY), (500/EASY), null);
 		}
-		else if(difficulty == 20) {
-			g.drawImage(player.getImage(), (location%difficulty)*25, (location/difficulty)*25+73, null);
+		else if(difficulty == HARD) {
+			g.drawImage(player.getImage(), (location%difficulty)*(500/HARD), (location/difficulty)*(500/HARD)+71, (500/HARD), (500/HARD), null);
 		}
 		if (location == goalLocation){
 			endState = 1;
 		}
+		System.out.println("Currently at " + location + " going to " + goalLocation);
 	}
 	
 	
