@@ -14,6 +14,7 @@ import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -32,7 +33,7 @@ public class StartPanel extends JPanel {
 		messagePanel.setLayout(new BoxLayout(messagePanel, BoxLayout.Y_AXIS));
 		messagePanel.setOpaque(false);
 		JLabel message = new JLabel("Choose difficulty to start the game");
-		message.setFont(new Font("Sans Serif", Font.PLAIN, 20));
+		message.setFont(new Font("Sans Serif", Font.PLAIN, 30));
 		message.setForeground(new Color(0, 255, 0, 150));
 		message.setAlignmentX(Component.CENTER_ALIGNMENT);
 		messagePanel.add(message);
@@ -44,7 +45,7 @@ public class StartPanel extends JPanel {
 		} catch (IOException ex) {
 		}
 
-		JPanel buttonPanel = new JPanel();
+		final JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
 		buttonPanel.setOpaque(false);
 		
@@ -67,6 +68,16 @@ public class StartPanel extends JPanel {
 		}
 		hardButton.setBorder(null);
 		buttonPanel.add(hardButton);
+		
+		JButton helpButton = new JButton();
+		try {
+			BufferedImage img = ImageIO.read(new File(
+					"resources/helpbutton.jpg"));
+			helpButton.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		helpButton.setBorder(null);
+		buttonPanel.add(helpButton);
 
 		easyButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
@@ -77,6 +88,15 @@ public class StartPanel extends JPanel {
 		hardButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				difficulty = 25;
+			}
+		});
+		helpButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				HelpPanel helpPanel = new HelpPanel();
+				JFrame frame = new JFrame();
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frame.add(helpPanel);
+				frame.setVisible(true);
 			}
 		});
 
