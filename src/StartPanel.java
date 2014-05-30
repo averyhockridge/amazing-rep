@@ -42,7 +42,7 @@ public class StartPanel extends JPanel {
 		messagePanel.setLayout(new BoxLayout(messagePanel, BoxLayout.Y_AXIS));
 		messagePanel.setOpaque(false);
 		message = new JLabel("Choose difficulty to start the game");
-		message.setFont(new Font("Sans Serif", Font.PLAIN, 30));
+		message.setFont(new Font("Sans Serif", Font.PLAIN, 20));
 		message.setForeground(new Color(0, 255, 0, 150));
 		message.setAlignmentX(Component.CENTER_ALIGNMENT);
 		messagePanel.add(message);
