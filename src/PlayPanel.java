@@ -89,6 +89,8 @@ public class PlayPanel extends JPanel{
 		else if(difficulty == HARD) {
 			g.drawImage(player.getImage(), (location%difficulty)*(500/HARD), (location/difficulty)*(500/HARD)+71, (500/HARD), (500/HARD), null);
 		}
+		
+		
 		if (location == goalLocation){
 			endState = 1;
 		}
