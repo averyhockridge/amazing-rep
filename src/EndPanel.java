@@ -49,7 +49,7 @@ import javax.swing.JPanel;
    				message = new JLabel("Sorry you lost! - Would you like to try again?");	
    			}
    			
-   			message.setFont(new Font("Sans Serif", Font.PLAIN, 30));
+   			message.setFont(new Font("Sans Serif", Font.PLAIN, 20));
    			message.setForeground(new Color(0, 255, 0, 150));
    			message.setAlignmentX(Component.CENTER_ALIGNMENT);
    			messagePanel.add(message);
