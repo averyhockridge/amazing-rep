@@ -9,7 +9,6 @@ import javax.swing.JPanel;
 	/**
 	* @author Leah Williams
 	*/
-   	@SuppressWarnings("serial")
 	public class EndPanel extends JPanel implements ActionListener {
    		/**
    		 * Creating the final screen - either Go again or Quit the game

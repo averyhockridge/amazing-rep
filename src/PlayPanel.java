@@ -23,13 +23,15 @@ public class PlayPanel extends JPanel{
 	private int    difficulty;
 	private int    goalLocation;
 	private Timer timer;
-	private int counter = 15;
+	private int timeLimit;
 
     /**
      * PlayPanel constructor - adds a bunch of gui elements and a player
      * @param difficulty the difficulty of the maze.
      */
 	public PlayPanel(int difficulty, MazeGenerator maze){
+		timeLimit = difficulty * 2;
+		
 		
 		//timer and ActionListener - ends game on time = 0
 		final JLabel timerLabel = new JLabel("Start");
@@ -38,9 +40,9 @@ public class PlayPanel extends JPanel{
 		this.add(timerLabel);
 		timer = new Timer(1000, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	timerLabel.setText(String.valueOf(counter));
-                counter--;
-                if (counter == 0) {
+            	timerLabel.setText(String.valueOf(timeLimit));
+                timeLimit--;
+                if (timeLimit == 0) {
                       timer.stop();
                       endState = 2;                      
                 }
@@ -79,7 +81,6 @@ public class PlayPanel extends JPanel{
 		if (location == goalLocation){
 			endState = 1;
 		}
-		System.out.println("Currently at " + location + " going to " + goalLocation);
 	}
 	
 	
