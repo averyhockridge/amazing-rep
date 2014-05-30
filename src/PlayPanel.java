@@ -18,6 +18,8 @@ import javax.swing.Timer;
  */
 public class PlayPanel extends JPanel{
 
+	private final int EASY = 20;
+	private final int HARD = 25;
 	private int    endState;
 	private Player player;
 	private int    difficulty;
