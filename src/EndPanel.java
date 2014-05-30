@@ -1,5 +1,18 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -9,54 +22,87 @@ import javax.swing.JPanel;
 	/**
 	* @author Leah Williams
 	*/
-	public class EndPanel extends JPanel implements ActionListener {
+	public class EndPanel extends JPanel{
    		/**
    		 * Creating the final screen - either Go again or Quit the game
    		 */
-   		private JButton replayButton = new JButton("Go Again");
-   		private JButton quitButton = new JButton("Quit");
-   		private int end = 0;
+
+   		//private int end = 0;
    		private int continueState = 0;
+		private Image background;
    		
 		
    		public EndPanel(int end){
-   			this.end = end;
+   			//this.end = end;
    			/**
    			 * Draw the screen - depending on how the Play screen ended - i.e. User WON! or User lost
    			 */
+   			this.setLayout(new BorderLayout());
+   			
+   			JPanel messagePanel = new JPanel();		
+   			messagePanel.setLayout(new BoxLayout(messagePanel, BoxLayout.Y_AXIS));
+   			messagePanel.setOpaque(false);
+   			
+   			JPanel message = new JPanel();
+   			
+   			if (end == 1){	
+   				message.add(new JLabel("Congratulations You Won! - Would you like to play again?"));
+   			}else {
+   				message.add(new JLabel("Sorry you lost! - Would you like to try again?"));	
+   			}
+   			
+   			message.setFont(new Font("Sans Serif", Font.PLAIN, 20));
+   			message.setForeground(new Color(0, 255, 0, 150));
+   			message.setAlignmentX(Component.CENTER_ALIGNMENT);
+   			messagePanel.add(message);
+
+   			
+   			try {
+   				BufferedImage img = ImageIO.read(new File("resources/background1.jpg"));
+   				background = img;
+   			} catch (IOException ex) {
+   			}
    			
    			JPanel buttonPanel = new JPanel();
- 			replayButton.addActionListener(this);
-  			quitButton.addActionListener(this);
-			buttonPanel.add(replayButton);
-			buttonPanel.add(quitButton);
+   			buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
+   			buttonPanel.setOpaque(false);
    			
-   			JLabel won = new JLabel("Congratulations You Won! - Would you like to play again?");
-   			JLabel lost = new JLabel("Sorry you lost! - Would you like to try again?");
-   			if (end == 1){	
-   				this.add(won);
+   			JButton replayButton = new JButton();
+   			try {
+   				BufferedImage img = ImageIO.read(new File(
+   						"resources/easybutton.jpg"));
+   				replayButton.setIcon(new ImageIcon(img));
+   			} catch (IOException ex) {
    			}
-   			else {
-   				this.add(lost);	
+   			replayButton.setBorder(null);
+   			buttonPanel.add(replayButton);
+
+   			JButton quitButton = new JButton();
+   			try {
+   				BufferedImage img = ImageIO.read(new File(
+   						"resources/hardbutton.jpg"));
+   				quitButton.setIcon(new ImageIcon(img));
+   			} catch (IOException ex) {
    			}
+   			quitButton.setBorder(null);
+   			buttonPanel.add(quitButton);
    			
-   			this.add(buttonPanel);
+   			replayButton.addActionListener(new ActionListener() {
+   				public void actionPerformed(ActionEvent event) {
+   					continueState = 1;
+   				}
+   			});
+
+   			quitButton.addActionListener(new ActionListener() {
+   				public void actionPerformed(ActionEvent event) {
+   					continueState = 2;
+   				}
+   			});
+    			
+   			messagePanel.add(buttonPanel);
+   			this.add(messagePanel, BorderLayout.CENTER);
    		}  
-   		/**
-   		 * Get the chosen outcome - ie play on or quit
-   		 * @return endstatus
-   		 */
-			
-   		@Override
-   		public void actionPerformed(ActionEvent e) {
-   			//   System.out.println("go again"); 
-   			if(e.getSource() == replayButton){
-   				continueState = 1;
-   			} else if (e.getSource() == quitButton) {	
-   				//   System.out.println("quitting"); 
-   				continueState = 2;
-   			}
-   		}
+
 			
    		/**
    		 * 
@@ -64,6 +110,11 @@ import javax.swing.JPanel;
    		 */
    		public int getContinueState(){
    			return continueState;
+   		}
+   		
+   		@Override
+   		public void paintComponent(Graphics g) {
+   			g.drawImage(background, 0, 0, null);
    		}
    	}	
 			
