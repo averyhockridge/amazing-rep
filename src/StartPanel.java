@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 /**
  * @author Stuart Aitken
@@ -24,7 +25,14 @@ import javax.swing.JPanel;
 public class StartPanel extends JPanel {
 
 	private int difficulty = 0;
+	private boolean showHelp = false;
 	private Image background;
+	private Image help;
+	private JButton easyButton;
+	private JButton hardButton;
+	private JLabel message;
+	private JButton helpButton;
+	private JButton backButton;
 
 	public StartPanel() {
 		this.setLayout(new BorderLayout());
@@ -32,7 +40,7 @@ public class StartPanel extends JPanel {
 		JPanel messagePanel = new JPanel();		
 		messagePanel.setLayout(new BoxLayout(messagePanel, BoxLayout.Y_AXIS));
 		messagePanel.setOpaque(false);
-		JLabel message = new JLabel("Choose difficulty to start the game");
+		message = new JLabel("Choose difficulty to start the game");
 		message.setFont(new Font("Sans Serif", Font.PLAIN, 30));
 		message.setForeground(new Color(0, 255, 0, 150));
 		message.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -44,12 +52,19 @@ public class StartPanel extends JPanel {
 			background = img;
 		} catch (IOException ex) {
 		}
+		try {
+			BufferedImage img = ImageIO.read(new File(
+					"resources/help.jpg"));
+			help = img;
+		} catch (IOException ex) {
+		}
 
 		final JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
 		buttonPanel.setOpaque(false);
 		
-		JButton easyButton = new JButton();
+		//Easy button
+		easyButton = new JButton();
 		try {
 			BufferedImage img = ImageIO.read(new File(
 					"resources/easybutton.jpg"));
@@ -59,7 +74,8 @@ public class StartPanel extends JPanel {
 		easyButton.setBorder(null);
 		buttonPanel.add(easyButton);
 
-		JButton hardButton = new JButton();
+		//hard button
+		hardButton = new JButton();
 		try {
 			BufferedImage img = ImageIO.read(new File(
 					"resources/hardbutton.jpg"));
@@ -69,7 +85,8 @@ public class StartPanel extends JPanel {
 		hardButton.setBorder(null);
 		buttonPanel.add(hardButton);
 		
-		JButton helpButton = new JButton();
+		//help button
+		helpButton = new JButton();
 		try {
 			BufferedImage img = ImageIO.read(new File(
 					"resources/helpbutton.jpg"));
@@ -78,6 +95,19 @@ public class StartPanel extends JPanel {
 		}
 		helpButton.setBorder(null);
 		buttonPanel.add(helpButton);
+		
+		//back button
+		backButton = new JButton();
+		try {
+			BufferedImage img = ImageIO.read(new File(
+					"resources/help.jpg"));
+			backButton.setIcon(new ImageIcon(img));
+		} catch (IOException ex) {
+		}
+		backButton.setBorder(null);
+		
+		buttonPanel.add(backButton);
+		backButton.setHorizontalAlignment(SwingConstants.RIGHT);
 
 		easyButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
@@ -92,13 +122,15 @@ public class StartPanel extends JPanel {
 		});
 		helpButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
-				HelpPanel helpPanel = new HelpPanel();
-				JFrame frame = new JFrame();
-				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				frame.add(helpPanel);
-				frame.setVisible(true);
-				while(helpPanel.getClose() != true){}
-				frame.dispose();
+				showHelp = true;
+				repaint();
+			}
+		});
+		
+		backButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				showHelp = false;
+				repaint();
 			}
 		});
 
@@ -122,6 +154,21 @@ public class StartPanel extends JPanel {
 	 */
 	@Override
 	public void paintComponent(Graphics g) {
-		g.drawImage(background, 0, 0, null);
+		if(showHelp) {
+			//g.drawImage(help, 0, 0, null);
+			easyButton.setVisible(false);
+			hardButton.setVisible(false);
+			message.setVisible(false);
+			helpButton.setVisible(false);
+			backButton.setVisible(true);
+			
+		}else {
+			g.drawImage(background, 0, 0, null);
+			easyButton.setVisible(true);
+			hardButton.setVisible(true);
+			message.setVisible(true);
+			helpButton.setVisible(true);
+			backButton.setVisible(false);
+		}
 	}
 }
