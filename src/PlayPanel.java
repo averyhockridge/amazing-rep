@@ -22,15 +22,15 @@ public class PlayPanel extends JPanel{
 	private Player player;
 	private int    difficulty;
 	private int    goalLocation;
-	private Timer  timer;
-	private int    timeLimit;
+	private Timer timer;
+	private int timeLimit;
 
     /**
      * PlayPanel constructor - adds a bunch of gui elements and a player
      * @param difficulty the difficulty of the maze.
      */
 	public PlayPanel(int difficulty, MazeGenerator maze){
-		timeLimit = difficulty * 2;
+	timeLimit = difficulty * 2;
 		
 		
 		//timer and ActionListener - ends game on time = 0
@@ -44,7 +44,7 @@ public class PlayPanel extends JPanel{
                 timeLimit--;
                 if (timeLimit == 0) {
                       timer.stop();
-                      endState = 2;                      
+                      endState = 2;
                 }
             }
         });
@@ -54,8 +54,7 @@ public class PlayPanel extends JPanel{
 		endState = 0;
 		int playerLocation = 0;
 		player = new Player(playerLocation, difficulty, maze);
-		goalLocation = difficulty * difficulty - 1;
-		
+		goalLocation = difficulty * difficulty - 1;		
 		
 	}
 	
@@ -73,10 +72,10 @@ public class PlayPanel extends JPanel{
 		
 		int location = player.getLocation();
 		if(difficulty == 10) {
-			g.drawImage(player.getImage(), (location%difficulty)*50, (location/difficulty)*50+73, null);
+			g.drawImage(player.getImage(), (location%difficulty)*50, (location/difficulty)*50, null);
 		}
 		else if(difficulty == 20) {
-			g.drawImage(player.getImage(), (location%difficulty)*25, (location/difficulty)*25+73, null);
+			g.drawImage(player.getImage(), (location%difficulty)*25, (location/difficulty)*25, null);
 		}
 		if (location == goalLocation){
 			endState = 1;
