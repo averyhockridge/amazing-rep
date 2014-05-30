@@ -97,6 +97,8 @@ public class StartPanel extends JPanel {
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame.add(helpPanel);
 				frame.setVisible(true);
+				while(helpPanel.getClose() != true){}
+				frame.dispose();
 			}
 		});
 
