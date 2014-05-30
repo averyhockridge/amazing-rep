@@ -1,12 +1,16 @@
 import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 /**
  * 
@@ -16,8 +20,7 @@ import javax.imageio.ImageIO;
 public class Player extends MazeCommon{
 	
 	private int location;
-	private Image playerImageLarge;
-	private Image playerImageSmall;
+	private Image playerImage;
 	private int size;
 	private MazeGenerator maze;
 	
@@ -31,9 +34,7 @@ public class Player extends MazeCommon{
 		location = startLocation;
 		try {
 			BufferedImage img = ImageIO.read(new File("resources/alien.gif"));
-			playerImageLarge = img;
-			img = ImageIO.read(new File("resources/alienSmall.gif"));
-			playerImageSmall = img;
+			playerImage = img;
 		} catch (IOException ex){
 			
 		}
@@ -41,16 +42,17 @@ public class Player extends MazeCommon{
 		this.size = size;
 		this.maze = maze;
 		
-		//Initilise controls to default arrow keys
+		//Initilise controls
 		upKeyCode = KeyEvent.VK_UP;
 		downKeyCode = KeyEvent.VK_DOWN;
 		leftKeyCode = KeyEvent.VK_LEFT;
 		rightKeyCode = KeyEvent.VK_RIGHT;
 		
-		//Load in the controls from config file
+		
 		try {
 			loadControlsFromFile("resources/controls.txt");
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -149,18 +151,18 @@ public class Player extends MazeCommon{
 
 	/**
 	 * Triggers the player to move on key events -
-	 * whatever keys are set in the controls file will move the player
+	 * arrow keys or wasd will move the player
 	 * @param e
 	 */
 	public void keyReleased(KeyEvent e) {
 		int code = e.getKeyCode();
-		if (code == upKeyCode){
+		if (code == upKeyCode || code == KeyEvent.VK_W){
 			movePlayer("up");
-		} else if (code == downKeyCode){
+		} else if (code == downKeyCode || code == KeyEvent.VK_S){
 			movePlayer("down");
-		} else if (code == leftKeyCode){
+		} else if (code == leftKeyCode || code == KeyEvent.VK_A){
 			movePlayer("left");
-		} else if (code == rightKeyCode){
+		} else if (code == rightKeyCode || code == KeyEvent.VK_D){
 			movePlayer("right");
 		}
 		
@@ -175,25 +177,6 @@ public class Player extends MazeCommon{
 		return location;
 	}
 	
-	/**
-	 * Gets the image of the player
-	 * @return
-	 */
-	public Image getImage(){
-		Image img = null;
-		if (size < 20){
-			img = playerImageLarge;
-		} else {
-			img = playerImageSmall;
-		}
-		return img;
-	}
-	
-	/**
-	 * Loads control scheme from a given file
-	 * @param path
-	 * @throws IOException
-	 */
 	public void loadControlsFromFile(String path) throws IOException{
 		FileReader f = new FileReader(path);
 		BufferedReader bf = new BufferedReader(f);
@@ -208,8 +191,6 @@ public class Player extends MazeCommon{
 		downKeyCode = controlsArray[1];
 		leftKeyCode = controlsArray[2];
 		rightKeyCode = controlsArray[3];
-		
-		bf.close();
 	}
 	
 }
