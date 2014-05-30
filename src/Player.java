@@ -195,6 +195,8 @@ public class Player extends MazeCommon{
 		downKeyCode = controlsArray[1];
 		leftKeyCode = controlsArray[2];
 		rightKeyCode = controlsArray[3];
+		
+		bf.close();
 	}
 	
 }
