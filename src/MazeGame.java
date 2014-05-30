@@ -62,13 +62,18 @@ public class MazeGame {
 		//Centre window in middle of screen
 		Toolkit t = Toolkit.getDefaultToolkit();
         	Dimension d = t.getScreenSize();
-		frame.setSize(851, 532);
-		frame.setTitle("Space Maze Game");
+		frame.setSize(851, 532+73);
+		frame.setTitle("Area 51");
         	int h = (d.height - frame.getHeight()) /2;
         	int w = (d.width - frame.getWidth()) /2;
 		frame.setLocation(w, h);
 		frame.setVisible(true);
 	    frame.setResizable(false);
+	    
+	    Bar bar = new Bar();
+		bar.setVisible(true);
+		bar.setPreferredSize(new Dimension(851, 70));
+	    frame.add(bar, BorderLayout.PAGE_START);
 	    
 		//specify the sound to play
 		File soundFile = new File("resources/theme.wav");
