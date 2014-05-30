@@ -168,6 +168,14 @@ public class Player extends MazeCommon{
 		
 	}
 
+	 /** 
+	 * Gets the image of the player
+	 * @return
+	 */
+	public Image getImage(){
+		return playerImage;
+	}
+	
 	
 	/**
 	 * 
