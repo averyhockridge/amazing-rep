@@ -24,21 +24,22 @@ import javax.swing.JPanel;
    			/**
    			 * Draw the screen - depending on how the Play screen ended - i.e. User WON! or User lost
    			 */
-   			JPanel messagePanel = new JPanel();
+   			
+   			JPanel buttonPanel = new JPanel();
+ 			replayButton.addActionListener(this);
+  			quitButton.addActionListener(this);
+			buttonPanel.add(replayButton);
+			buttonPanel.add(quitButton);
+   			
+   			JLabel won = new JLabel("Congratulations You Won! - Would you like to play again?");
+   			JLabel lost = new JLabel("Sorry you lost! - Would you like to try again?");
    			if (end == 1){	
-   				messagePanel.add(new JLabel("Congratulations You Won! - Would you like to play again?"));
+   				this.add(won);
    			}
    			else {
-   				messagePanel.add(new JLabel("Sorry you lost! - Would you like to try again?"));	
+   				this.add(lost);	
    			}
-		    messagePanel.setVisible(true);
-   			JPanel buttonPanel = new JPanel();
-     			replayButton.addActionListener(this);
-      			quitButton.addActionListener(this);
-   			buttonPanel.add(replayButton);
-   			buttonPanel.add(quitButton);
-   			buttonPanel.setVisible(true);
-   			this.add(messagePanel);
+   			
    			this.add(buttonPanel);
    		}  
    		/**
