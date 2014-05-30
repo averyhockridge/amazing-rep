@@ -4,7 +4,6 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -27,11 +26,16 @@ public class StartPanel extends JPanel {
 	private Image background;
 
 	public StartPanel() {
-		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-		JLabel message = new JLabel("Choose your difficulty to start the game");
-		message.setFont(new Font("Serif", Font.PLAIN, 30));
+		this.setLayout(new BorderLayout());
+		
+		JPanel messagePanel = new JPanel();		
+		messagePanel.setLayout(new BoxLayout(messagePanel, BoxLayout.Y_AXIS));
+		messagePanel.setOpaque(false);
+		JLabel message = new JLabel("Choose difficulty to start the game");
+		message.setFont(new Font("Sans Serif", Font.PLAIN, 16));
 		message.setForeground(new Color(0, 255, 0, 150));
-		this.add(message);
+		message.setAlignmentX(Component.CENTER_ALIGNMENT);
+		messagePanel.add(message);
 
 		try {
 			BufferedImage img = ImageIO.read(new File(
@@ -42,6 +46,8 @@ public class StartPanel extends JPanel {
 
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
+		buttonPanel.setOpaque(false);
+		
 		JButton easyButton = new JButton();
 		try {
 			BufferedImage img = ImageIO.read(new File(
@@ -74,7 +80,8 @@ public class StartPanel extends JPanel {
 			}
 		});
 
-		this.add(buttonPanel);
+		messagePanel.add(buttonPanel);
+		this.add(messagePanel, BorderLayout.EAST);
 	}
 
 	/**
