@@ -20,21 +20,20 @@ import javax.swing.JPanel;
 
 
 	/**
+	 * Creating the final screen - either Go again or Quit the game
 	* @author Leah Williams
 	*/
 	public class EndPanel extends JPanel{
-   		/**
-   		 * Creating the final screen - either Go again or Quit the game
-   		 */
 
    		private int continueState = 0;
 		private Image background;
-   		
-		
+
+	/**
+	 * Draw the screen - depending on how the Play screen ended - i.e. User WON!
+	 * or User lost
+	 */
    		public EndPanel(int end){
-   			/**
-   			 * Draw the screen - depending on how the Play screen ended - i.e. User WON! or User lost
-   			 */
+   			
    			this.setLayout(new BorderLayout());
    			
    			JPanel messagePanel = new JPanel();		

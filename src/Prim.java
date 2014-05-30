@@ -6,7 +6,6 @@ import java.util.ArrayList;
  * @author Brandon Sandoval
  *
  */
-
 public class Prim extends MazeCommon implements MazeStrategy{
 	
 	/**

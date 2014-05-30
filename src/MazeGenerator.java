@@ -13,7 +13,6 @@ import javax.swing.JPanel;
  * @author Brandon Sandoval
  *
  */
-
 public class MazeGenerator extends JPanel{
 	private Graph<Integer> maze;
 	private int size;

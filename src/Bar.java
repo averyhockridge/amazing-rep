@@ -7,7 +7,11 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-
+/**
+ * The bar is the image which is across the entire screen
+ * @author Anne
+ *
+ */
 public class Bar extends JPanel{
 	Image barImage = null;
 	

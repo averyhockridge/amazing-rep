@@ -31,6 +31,8 @@ public class MazeGame {
 	private int              difficulty = 0;
 	private int              endState   = 0;
 	
+	
+	
 	public static void main(String[] args) {
 		MazeGame main = new MazeGame(START);
 		while(main.run());
